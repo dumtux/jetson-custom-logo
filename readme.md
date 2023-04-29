@@ -54,14 +54,14 @@ $ cd <path-to-sdk>/Linux_for_Tegra/tools/bmp-splash/
 $ OUT=$PWD ./genbmpblob_L4T.sh t194 ./config_file ./BMP_generator_L4T.py /usr/bin/lz4c custom-bmp.blob
 ```
 
-Note that the general command format is like the following, and need to use correct **chip name** for the Jetson module.
-
-```
-# Jetson Nano - <chip> = t194
-# Jetson Xavier NX - <chip> = t210
-# ...
-$ OUT=$PWD ./genbmpblob_L4T.sh <chip> <product config file> <path to blob_generator> [ <path to lz4c> ] <output file>
-```
+> Note that the general command format is like the following, and need to use correct **chip name** for the Jetson module.
+> 
+> ```
+> # Jetson Nano - <chip> = t194
+> # Jetson Xavier NX - <chip> = t210
+> # ...
+> $ OUT=$PWD ./genbmpblob_L4T.sh <chip> <product config file> <path to blob_generator> [ <path to lz4c> ] <output file>
+> ```
 
 Boot the Jetson module in a **recovery** mode by plugging a jumper on the Jetson module dev boards.
 Note that jumper positions may vary for each dev board types.
@@ -80,3 +80,12 @@ $ sudo ./flash.sh -r -k BMP --image ./tools/bmp-splash/custom-bmp.blob jetson-na
 > # ...
 > $ sudo ./flash.sh -r -k BMP --image <path to custom logo blob> <board> mmcblk0p1
 > ```
+
+Now turn off the Jetson module, remove recovery jumper, and boot into normal mode.
+The new log should be shown!
+  
+## Troubleshooting
+  
+There are many similar articles and blogs related to customize Jetson module logo.
+Many errors are related to the flashing step, by choosing incorrect board name.
+For more information about board names, the best resource is Nvidia's official documentation: [Flashing and Booting the Target Device](https://docs.nvidia.com/jetson/archives/l4t-archived/l4t-3251/index.html#page/Tegra%20Linux%20Driver%20Package%20Development%20Guide/flashing.html)
